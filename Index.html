@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإدارة</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            transition: background-color 0.5s;
+        }
+        .dark-mode {
+            background-color: #343a40;
+            color: white;
+        }
+        .btn-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-secondary btn-toggle" onclick="toggleTheme()">تغيير الوضع</button>
+    <div class="container mt-5">
+        <h2 class="text-center">تسجيل الدخول إلى الإدارة</h2>
+        <form onsubmit="return validateLogin()">
+            <div class="form-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" class="form-control" id="username" placeholder="أدخل اسم المستخدم" required>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" class="form-control" id="password" placeholder="أدخل كلمة المرور" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+        </form>
+        <hr>
+        <h4>إضافة كاتب جديد</h4>
+        <form id="addWriterForm">
+            <div class="form-group">
+                <label for="writerName">اسم الكاتب</label>
+                <input type="text" class="form-control" id="writerName" placeholder="أدخل اسم الكاتب" required>
+            </div>
+            <div class="form-group">
+                <label for="writerEmail">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="writerEmail" placeholder="أدخل البريد الإلكتروني" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">إضافة كاتب</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === "mahmoudalbeltagy3@gmail.com" && password === "ma7m@ud9000") {
+                alert("تم تسجيل الدخول بنجاح!");
+                return true; // يمكنك إضافة توجيه إلى صفحة الإدارة هنا
+            } else {
+                alert("اسم المستخدم أو كلمة المرور غير صحيحة.");
+                return false;
+            }
+        }
+
+        document.getElementById('addWriterForm').onsubmit = function(event) {
+            event.preventDefault();
+            const writerName = document.getElementById("writerName").value;
+            const writerEmail = document.getElementById("writerEmail").value;
+            alert(`تم إضافة الكاتب: ${writerName} - ${writerEmail}`);
+            // هنا يمكنك إضافة الكود لتخزين الكاتب في قاعدة بيانات
+        };
+    </script>
+</body>
+</html>
